@@ -1,0 +1,131 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header bg-info">
+                <h4 class="m-b-0 text-white" *ngIf="libroSeleccionado">Editar Autor</h4>
+                <h4 class="m-b-0 text-white" *ngIf="!libroSeleccionado">Crear Autor</h4>
+            </div>
+            <div class="card-body">
+
+                 <form  [formGroup]="libroForm"
+                        id="enviar"
+                        (submit)="guardarLibro()">
+                    <div class="form-body">
+                        <hr>
+                        <div class="row p-t-20">
+                            <div class="col-md-6">
+                                <div id="primero" class="form-group">
+                                    <label class="form-control-label ">Titulo</label>
+                                    <div>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class=" mdi mdi-account-edit"></i></div>
+                                            <input type="text" 
+                                            id="titulo"
+                                            formControlName = "titulo" 
+                                            class="form-control" 
+                                            placeholder="">        
+                                        </div>
+                                    </div>
+                                    <div class="form-control-feedback"
+                                                *ngIf="(this.campo('titulo')?.touched || submitted) && addclass('primero','titulo', 'titulo')"> 
+                                                <!-- addclass('primero', 'firstName') -->
+                                                El titulo es requerido
+                                               
+                                    </div> 
+                                 </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <!-- en caso de error agrega estas clase al div has-danger -->
+                                <div id="segundo" class="form-group ">
+                                    <label class="form-control-label">Precio</label>
+                                    <!-- en caso de error agrega estas clase al input form-control-danger -->
+                                    <div>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class=" mdi mdi-cash-usd"></i></div>
+                                            <input type="text" 
+                                            id="precio"
+                                            formControlName="precio"
+                                            class="form-control " 
+                                            placeholder=""
+                                            mask="separator"
+                                            thousandSeparator="."
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="form-control-feedback"
+                                                *ngIf="(this.campo('precio')?.touched || submitted) && addclass('segundo','precio', 'precio')"> 
+                                                <!-- addclass('primero', 'firstName') -->
+                                                El precio es requerido
+                                               
+                                    </div> 
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                              <!--/row-->
+                              <div class="row">
+
+                                
+                               
+
+                                      <div class="col-md-6">
+                                <div id="septimo" class="form-group ">
+                                    <label class="form-control-label">Autor</label>
+                                    <!-- en caso de error agrega estas clase al input form-control-danger -->
+                                    
+                                    <div>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="mdi mdi-dots-vertical"></i></div>
+                                             <!-- <select class="form-control selectpicker" 
+                                                                  title="Seleccione roles" 
+                                                                  id="roles" 
+                                                                  formControlName="roles"
+                                                                  multiple 
+                                                                  data-live-search="true">
+                                                          
+                                                              <option value="1">Secretaria</option>
+                                                              <option value="2">Especialista</option>
+                                        </select> -->
+
+                                            <select name="select1" id="select1"
+                                                class="form-control selectpicker" title="Seleccione el autor"  formControlName="autor" >
+                                             
+                                                 <option *ngFor="let autor of autoresSeleccionar"
+                                                              [value]="autor.id"> {{autor.nombre}} </option>
+                                              </select>
+                                        </div>
+                                    </div>
+                                     <div class="form-control-feedback"
+                                                *ngIf="(this.campo('roles')?.touched || submitted) && addclass('septimo','roles', 'roles')"> 
+                                                <!-- addclass('primero', 'firstName') -->
+                                                Los roles son requeridos
+                                               
+                                        </div> 
+                                </div>
+                            </div>
+                                
+                                <!--/span-->
+                            </div>
+
+                       
+                    </div>
+                    <!-- <div class="form-actions">
+                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                        <button type="button" class="btn btn-inverse">Cancel</button>
+                    </div> -->
+
+                    <div class="form-group row m-b-0">
+                        <div class="offset-sm-3 col-sm-9">
+                            <button type="submit"
+                                    class="btn btn-success waves-effect waves-light">
+                                <i class="fa fa-save"></i>
+                                Guardar Cambios
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
