@@ -128,6 +128,14 @@ export class AutorComponent implements OnInit {
             console.log(resp);
             Swal.fire('Actualizado', `${nombre} actualizado correctamente`, 'success');
             this.router.navigateByUrl('/dashboard/autores');
+          },
+            error => {
+             let mensaje = '';
+              error.error.errors.forEach( (msg: any) => {
+                mensaje += msg + '\n\n'                 
+              });
+
+            Swal.fire('Error', `${mensaje}`, 'error');
           })
     }
     else {
@@ -146,7 +154,12 @@ export class AutorComponent implements OnInit {
      
               },
                 error => {
-                  Swal.fire('Error', 'Ha ocurido un error ver logs', 'error');
+                   let mensaje = '';
+                   error.error.errors.forEach( (msg: any) => {
+                     mensaje += msg + '\n\n'                 
+                   });
+        
+                  Swal.fire('Error', `${mensaje}`, 'error');
               })
 
     }

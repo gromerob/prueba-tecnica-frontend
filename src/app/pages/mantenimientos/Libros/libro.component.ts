@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Autor } from '../../../models/autor.model';
 import { AutorService } from '../../../services/autor.service';
+import { onErrorResumeNext } from 'rxjs';
 
 @Component({
   selector: 'app-libro',
@@ -129,6 +130,14 @@ export class LibroComponent implements OnInit {
             console.log(resp);
             Swal.fire('Actualizado', `${titulo} actualizado correctamente`, 'success');
             this.router.navigateByUrl('/dashboard/libros');
+          },
+            error => {
+             let mensaje = '';
+              error.error.errors.forEach( (msg: any) => {
+                mensaje += msg + '\n\n'                 
+              });
+
+            Swal.fire('Error', `${mensaje}`, 'error');
           })
     }
     else {
@@ -149,7 +158,13 @@ export class LibroComponent implements OnInit {
      
               },
                 error => {
-                  Swal.fire('Error', 'Ha ocurido un error ver logs', 'error');
+                  // aca viene la validacion de spring y se muestra con swal el mensaje
+                  let mensaje = '';
+                   error.error.errors.forEach( (msg: any) => {
+                     mensaje += msg + '\n\n'                 
+                   });
+        
+                  Swal.fire('Error', `${mensaje}`, 'error');
               })
 
     }

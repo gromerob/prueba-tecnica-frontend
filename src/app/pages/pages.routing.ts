@@ -2,8 +2,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagesComponent } from './pages.component';
-import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
-import { MedicoComponent } from './mantenimientos/medicos/medico.component';
 import { AutoresComponent } from './mantenimientos/autores/autores.component';
 import { AutorComponent } from './mantenimientos/autores/autor.component';
 import { LibrosComponent } from './mantenimientos/Libros/libros.component';
